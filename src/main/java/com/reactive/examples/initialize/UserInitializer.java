@@ -4,6 +4,7 @@ import com.reactive.examples.model.Department;
 import com.reactive.examples.model.User;
 import com.reactive.examples.repository.DepartmentRepository;
 import com.reactive.examples.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +18,7 @@ import java.util.List;
 @Component
 @Profile("!test")
 @Slf4j
+@RequiredArgsConstructor
 public class UserInitializer implements CommandLineRunner {
 
     @Autowired
@@ -24,7 +26,7 @@ public class UserInitializer implements CommandLineRunner {
 
     @Autowired
     private DepartmentRepository departmentRepository;
-    
+
     @Override
     public void run(String... args) {
             initialDataSetup();

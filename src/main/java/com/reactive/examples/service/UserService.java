@@ -5,6 +5,7 @@ import com.reactive.examples.model.Department;
 import com.reactive.examples.model.User;
 import com.reactive.examples.repository.DepartmentRepository;
 import com.reactive.examples.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,6 @@ import java.util.function.BiFunction;
 
 @Service
 @Slf4j
-@Transactional
 public class UserService {
 
     @Autowired
@@ -28,6 +28,7 @@ public class UserService {
     private DepartmentRepository departmentRepository;
 
     public Mono<User> createUser(User user){
+        log.info("UserService getSalary:{}",user.getSalary());
         return userRepository.save(user);
     }
 

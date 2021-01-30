@@ -3,29 +3,37 @@ spring:
     active: dev
 ---
 spring:
-  profiles: dev
   r2dbc:
     url: r2dbc:postgresql://localhost:5432/test
     username: postgres
-    password: postgres
+    password: Pass2020!
+  config:
+    activate:
+      on-profile: dev
 logging:
   level:
     org.springframework.data.r2dbc: Debug
+server:
+  port: 8081
 ---
 spring:
-  profiles: test
   r2dbc:
     url: r2dbc:h2:mem:///test?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     name: sa
     password:
+  config:
+    activate:
+      on-profile: test
 ---
 spring:
-  profiles: prod
   r2dbc:
     url: r2dbc:postgresql://localhost:5432/test
     username: postgres
-    password: postgres
+    password: Pass2020!
   logging:
     level:
-      org.springframework.data.r2dbc: Debug
+      org.springframework: Debug
+  config:
+    activate:
+      on-profile: prod
 

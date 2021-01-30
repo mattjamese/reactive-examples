@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 @Component
 @Slf4j
 public class UserClient {
-    private WebClient client = WebClient.create("http://localhost:8080");
+    private WebClient client = WebClient.create("http://localhost:8081");
     public Mono<User> getUser(String userId){
        return client.get()
                 .uri("/users/{userId}", userId)

@@ -3,9 +3,11 @@ package com.reactive.examples.controller;
 import com.reactive.examples.dto.UserDepartmentDTO;
 import com.reactive.examples.model.User;
 import com.reactive.examples.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -14,13 +16,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@Slf4j
 public class UserController {
 @Autowired
 private UserService userService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<User> create(@RequestBody User user){
+    public Mono<User> create(@RequestBody @Validated User user){
+        log.info("User details Controller:{}",user.getSalary());
         return userService.createUser(user);
     }
 

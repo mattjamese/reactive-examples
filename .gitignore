@@ -1,5 +1,15 @@
 target/
 *.iml
+*.class
 dependency-reduced-pom.xml
 .idea/
 .DS_Store
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Maven
+log/
+target/
