@@ -4,9 +4,9 @@ spring:
 ---
 spring:
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/test
+    url: r2dbc:postgresql://localhost:5432/postgres
     username: postgres
-    password: Pass2020!
+    password: password
   config:
     activate:
       on-profile: dev

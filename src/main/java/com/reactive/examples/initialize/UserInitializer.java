@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,9 +35,9 @@ public class UserInitializer implements CommandLineRunner {
     }
 
     private List<User> getData(){
-        return Arrays.asList(new User(null,"Suman Das",30,10000),
-                             new User(null,"Arjun Das",5,1000),
-                             new User(null,"Saurabh Ganguly",40,1000000));
+        return Arrays.asList(new User(null,"Suman Das",30, new BigDecimal("10000.00"), "suman.das@abc.com", LocalDate.now()),
+                             new User(null,"Arjun Das",55,new BigDecimal("20000.00"), "Arjun.Das@abc.com", LocalDate.of(2029, 10, 29)),
+                             new User(null,"Saurabh Ganguly",40,new BigDecimal("25000.00"), "Saurabh.Ganguly@abc.com", LocalDate.of(2029, 10, 29)));
     }
 
     private List<Department> getDepartments(){

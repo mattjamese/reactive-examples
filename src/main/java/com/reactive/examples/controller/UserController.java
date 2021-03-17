@@ -12,18 +12,21 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/users")
 @Slf4j
+
 public class UserController {
 @Autowired
 private UserService userService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<User> create(@RequestBody @Validated User user){
+    public Mono<User> create(@RequestBody @Valid User user){
         log.info("User details Controller:{}",user.getSalary());
         return userService.createUser(user);
     }
@@ -36,14 +39,14 @@ private UserService userService;
     @GetMapping("/{userId}")
     public Mono<ResponseEntity<User>> getUserById(@PathVariable Integer userId){
         Mono<User> user = userService.findById(userId);
-        return user.map( u -> ResponseEntity.ok(u))
+        return user.map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{userId}")
     public Mono<ResponseEntity<User>> updateUserById(@PathVariable Integer userId, @RequestBody User user){
         return userService.updateUser(userId,user)
-                .map(updatedUser -> ResponseEntity.ok(updatedUser))
+                .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.badRequest().build());
     }
 
